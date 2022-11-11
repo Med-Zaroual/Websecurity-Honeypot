@@ -23,32 +23,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `Users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE IF NOT EXISTS `Users` (
 `user_id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `e-mail` varchar(50) NOT NULL,
+  `user_type` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+
   `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `Users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `name`) VALUES
-(2, 'admin', 'admin', 'admin'),
-(3, 'user', 'user', 'user');
+INSERT INTO `Users` (`user_id`, `username`, `email`,`user_type`, `password`) VALUES
+(1, 'admin','admin@admib.com', 'admin', 'youwouldntguessit'),
+(2, 'user','user@user.com', 'user', 'user');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `Users`
 --
-ALTER TABLE `users`
+ALTER TABLE `Users`
  ADD PRIMARY KEY (`user_id`);
 
 --
@@ -56,9 +59,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `Users`
 --
-ALTER TABLE `users`
+ALTER TABLE `Users`
 MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
