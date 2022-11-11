@@ -21,7 +21,7 @@
             $msg = " Registered Sussecfully";
          
         }
-        else
+      else
             $msg = " Error Registering";
 
       echo $msg;
