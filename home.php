@@ -42,7 +42,8 @@ $row=mysqli_fetch_array($result);
                 <strong><?php echo $row['username']; ?></strong>
                 <small>
                     <i style="color: white;">(<?php echo ucfirst($row['user_type']); ?>)</i><br>
-                </small>
+                </small><br>
+                <strong><?php echo $row['email']?></strong>
             </div>
     </div>
 

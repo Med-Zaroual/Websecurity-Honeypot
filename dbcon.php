@@ -63,8 +63,8 @@ function getUserById($id){
 
 // escape string
 function escape($val){
-  global $db;
-  return mysqli_real_escape_string($db, trim($val));
+  global $con;
+  return mysqli_real_escape_string($con, trim($val));
 }
 
 

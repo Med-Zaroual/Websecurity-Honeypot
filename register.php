@@ -33,7 +33,7 @@
       //check if data has been successfully tranferred
       if($result){
             header('location:home.php');
-            $msg = " Registered Sussecfully";
+            //$msg = " Registered Sussecfully";
         }
       else
             $msg = " Error Registering";
