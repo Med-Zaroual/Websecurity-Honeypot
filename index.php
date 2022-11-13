@@ -31,22 +31,7 @@
 		
 ?>
 
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
-
-<body>
-
-<header>
-
-	<div>
-		<h1><center> Welcome to our Honeypot Project</center></h1>
-	</div>
-	
-</header>
-
+<?php include('header.php')?>
 
 
 

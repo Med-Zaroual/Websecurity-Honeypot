@@ -44,21 +44,7 @@
  ?>
 
 
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-
-
-<body>
-
-<header>
-  
-  <div>
-    <h1><center> Rigester new Account </center></h1>
-  </div>
-  
-</header>
+<?php include('header.php')?>
 
 
 <div class="form-wrapper-Register">

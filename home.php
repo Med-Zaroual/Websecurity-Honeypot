@@ -7,17 +7,7 @@ $row=mysqli_fetch_array($result);
 
  ?>
 
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-
-<header>
-  <div>
-    <h1><center> Home Page </center></h1>
-  </div>
-</header>
+<?php include('header.php')?>
 
 <div class="form-wrapper"> 
     <center><h3>Welcome: <?php echo $row['username']; ?> </h3></center>
