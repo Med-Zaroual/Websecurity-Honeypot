@@ -2,10 +2,9 @@
 include('dbcon.php');
 include('session.php'); 
 
-$result=mysqli_query($con, "select * from Users where user_id='$session_id'")or die('Error In Session');
-$row=mysqli_fetch_array($result);
+$row=getUserBySessionId($session_id);
 
- ?>
+?>
 
 <?php include('header.php')?>
 
