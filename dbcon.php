@@ -29,7 +29,8 @@ function getUserBySessionId($id){
 function getAllUsers(){
   global $con;
   $users=array();
-  $result=mysqli_query($con,"select * from Users where user_type='Normal user'");
+  $result=mysqli_query($con,"select * from Users");
+  //$result=mysqli_query($con,"select * from Users where user_type='Normal user'");
   return $users=mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
 
@@ -64,24 +65,23 @@ foreach($sessionNames as $sessionName) {
 } return $allSessions;
 }
 
-function getStatus($User_Id){
+
+
+//https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
+//check the status of each users, based on it session
+function getStatus($key,$value){
   global $con;
-  $users=getAllUsers();
   $allSessions=getAllSessions();
-  foreach($users as $u){
-    $user_id=$u[$User_Id];
-    foreach($allSessions as $s){
-      if(isset($s[$user_id]))
+  foreach ($allSessions as $s){
+    if(isset($s[$key]) && $s[$key] === $value){
         return "In";
-      else
-        return "out";
     }
+    else {
+        return "out";
+    } 
   }
 }
 
-function getUsersIN(){
-
-}
 
 // escape string
 function escape($val){
