@@ -8,7 +8,7 @@ $liste=getAllUsers();
 
 ?>
 
-<h1><center> Users list </center><h1>
+<h1><center> Users list </center></h1>
 <hr>
 <h2> the number of users corrently logged in : </h2>
 <hr>
@@ -27,7 +27,7 @@ $liste=getAllUsers();
 				echo
 				"
 					<tr>
-					<td></td>
+					<td>".getStatus($user["user_id"])."</td>
 					<td>".$user["username"]."
 					<td>".$user["email"]."
 					<td>".$user["user_type"]."
@@ -36,7 +36,7 @@ $liste=getAllUsers();
 					</tr>
 				"
 			;}
-		?>
-	
-	
+		?>	
 </table>
+
+<button><p><a href="logout.php">Log Out</a></p></button>

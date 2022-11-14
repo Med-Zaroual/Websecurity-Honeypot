@@ -1,5 +1,6 @@
 <?php
 //session_start();
+//include('session2.php');
 
 $username = "";
 $email = "";
@@ -41,8 +42,41 @@ function getUserById($id){
   return $user;
 }
 
-function getStatus($user){
 
+
+//Looping Through All a Server's Sessions in PHP
+function getAllSessions(){
+
+$allSessions = [];
+
+//location in MacOS
+$sessionNames = scandir(sys_get_temp_dir());
+//$sessionNames = scandir(session_save_path());
+
+foreach($sessionNames as $sessionName) {
+    $sessionName = str_replace("sess_","",$sessionName);
+    if(strpos($sessionName,".") === false) { //This skips temp files that aren't sessions
+        //session_id($sessionName);
+        //session_start();
+        $allSessions[$sessionName] = $_SESSION;
+        //session_abort();
+    }
+} return $allSessions;
+}
+
+function getStatus($User_Id){
+  global $con;
+  $users=getAllUsers();
+  $allSessions=getAllSessions();
+  foreach($users as $u){
+    $user_id=$u[$User_Id];
+    foreach($allSessions as $s){
+      if(isset($s[$user_id]))
+        return "In";
+      else
+        return "out";
+    }
+  }
 }
 
 function getUsersIN(){
