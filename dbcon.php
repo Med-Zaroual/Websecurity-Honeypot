@@ -23,6 +23,15 @@ function getUserBySessionId($id){
   return $row;
 }
 
+//get list of all users
+//https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
+function getAllUsers(){
+  global $con;
+  $users=array();
+  $result=mysqli_query($con,"select * from Users where user_type='Normal user'");
+  return $users=mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
+
 //return user array from their id
 function getUserById($id){
   global $con;
@@ -30,6 +39,14 @@ function getUserById($id){
   $request=mysqli_query($con,$query);
   $user = mysqli_fetch_assoc($result);
   return $user;
+}
+
+function getStatus($user){
+
+}
+
+function getUsersIN(){
+
 }
 
 // escape string
