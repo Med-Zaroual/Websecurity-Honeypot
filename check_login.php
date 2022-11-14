@@ -18,7 +18,8 @@
 					$_SESSION['user_type']=$row['user_type'];
 					isAdmin();
 				}
-			else{
+			else{	
+					header('location:index.php');
 					echo 'Invalid Username and Password Combination';
 				}
 		}

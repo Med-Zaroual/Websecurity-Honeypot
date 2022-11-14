@@ -1,1 +1,3 @@
-<h2> hello from admin panel </h2>
+<?php include('header.php'); ?>
+
+<center><h1>Admin Panel</h1></center>
