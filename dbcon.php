@@ -66,7 +66,7 @@ function getAllSessions(){
 $allSessions = [];
 //location in MacOS
 $sessionNames = scandir(sys_get_temp_dir());
-//$sessionNames = scandir(session_save_path());
+//$sessionNames = scandir(session_save_path()); => on linux
 
 foreach($sessionNames as $sessionName) {
     $sessionName = str_replace("sess_","",$sessionName);

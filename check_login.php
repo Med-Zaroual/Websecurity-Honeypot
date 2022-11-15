@@ -14,15 +14,20 @@
 			$num_row= mysqli_num_rows($query);
 
 			if ($num_row > 0) {			
+				if($row['user_type']=="blocked"){
+					echo "This user is Blocked!";
+				}
+				else{
 					$_SESSION['user_id']=$row['user_id'];
 					changeStatus($row['user_id']); // Change status to '1', Once connected.
 					$_SESSION['user_type']=$row['user_type'];
 					isAdmin();
-				}
+					}
+			}
 			else{	
 					header('location:index.php');
 					echo 'Invalid Username and Password Combination';
-				}
+			}
 		}
 
 

@@ -19,25 +19,26 @@ $row=getUserBySessionId($session_id);
 	<tr bgcolor="white">
 		<td style="color:black;">Status</td>
 		<td style="color:black;">Username</td>
-		<td style="color:black;">User Type</td>
 		<td style="color:black;">Email</td>
+		<td style="color:black;">User Type</td>
 		<td></td>
 		<td></td>
 	</tr>
 	
 		<?php
 			foreach ($liste as $user) {
+				$id=$user["user_id"];
 
 				if ($user["user_type"]!=="admin"){
 						echo
 					"
 						<tr>
-						<td>".getStatus($user["user_id"])."</td>
+						<td>".getStatus($id)."</td>
 						<td>".$user["username"]."
 						<td>".$user["email"]."
 						<td>".$user["user_type"]."
-						<td><input type=\"submit\" value=\"Enable\"></input></td>
-						<td><input type=\"submit\" value=\"Disable\"></input></td>
+						<td><a href=\"enable.php?user=$id\">Enable</a></td>
+						<td><a href=\"disable.php?user=$id\">Disable</a></td>
 						</tr>
 					";
 				}
