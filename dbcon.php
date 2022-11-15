@@ -16,6 +16,7 @@ $con = mysqli_connect("localhost","root","Amir0618104127.","login");
 // else {
 //   echo "Connected to Database";}
 
+
 //get Users by the sessions's user information
 function getUserBySessionId($id){
   global $con;
