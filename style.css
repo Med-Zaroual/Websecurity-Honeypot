@@ -33,11 +33,11 @@ height:370px;
 }
 
 .form-wrapper-home{
-    width: 1000px;
+    width: 500px;
     height: 570px;
     position: absolute;
-    top: 30%;
-    left: 30%;
+    top: 40%;
+    left: 40%;
     margin: -184px 0px 0px -155px;
   background: rgba(0,0,0,0.27);
   padding: 15px 25px;
@@ -194,6 +194,7 @@ input[type='text']{
   height: 100%;
   display: block;
   margin: 0 auto;
+/*  padding: 19;*/
 }
 
 

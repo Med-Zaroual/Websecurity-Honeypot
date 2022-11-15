@@ -17,24 +17,26 @@ $row=getUserBySessionId($session_id);
                 <!-- <button class="btn btn-secondary">  -->
                     <img src="https://i.imgur.com/wvxPV9S.png" height="100" width="100" />
                 <!-- </button>  -->
-                <br><br><br>
+                <br>
                 <div class=" d-flex mt-2"> 
                     <button class="btn1 btn-dark">Upload avatar</button> 
                 </div>
                 <center>
                 <span class="name mt-3"><?php echo $row['username']; ?></span> 
                 <span class="idd"><i style="color: white;">(<?php echo ucfirst($row['user_type']); ?>)</i></span> 
-                
+                 <br><br>
                 <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
                     <span class="number">Email: 
                         <span class="follow"><?php echo $row['email']?></span>
                     </span>
                 </div> 
+                 <br><br>
                 <div class=" d-flex mt-2"> 
                     <button class="btn1 btn-dark">Edit Profile</button> 
                 </div> 
+                <hr><br>
                 <div class="text mt-3"> 
-                    <span><?php echo $row['username']; ?> is one of the users in the Web security,technology and honeypot project <br><br> Howest university of applied science. </span> 
+                    <span><?php echo $row['username']; ?> is one of the users in the Honeypot Project<br>(Web Security, Technology and honeypot) <br><br> Howest university of applied science. </span> 
                 </div> 
                 </center>
                 <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center"> 
