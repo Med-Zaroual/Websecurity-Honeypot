@@ -15,6 +15,7 @@
 
 			if ($num_row > 0) {			
 					$_SESSION['user_id']=$row['user_id'];
+					changeStatus($row['user_id']); // Change status to '1', Once connected.
 					$_SESSION['user_type']=$row['user_type'];
 					isAdmin();
 				}

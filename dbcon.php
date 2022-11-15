@@ -17,13 +17,18 @@ $con = mysqli_connect("localhost","root","12341234","login");
 //   echo "Connected to Database";}
 
 
-//get Users by the sessions's user information
-function getUserBySessionId($id){
+function Nb_log_in(){
   global $con;
-  $result=mysqli_query($con, "select * from Users where user_id='$id'")or die('Error In Session');
-  $row=mysqli_fetch_array($result);
-  return $row;
+  $nb=0;
+  $users=getAllUsers();
+  for($i=0;$i<count($users);$i++){
+    if($users[$i]['status']=='1'){
+      $nb++;
+    }
+  }
+  return $nb;
 }
+
 
 //get list of all users
 //https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
@@ -35,15 +40,25 @@ function getAllUsers(){
   return $users=mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
 
+
 //return user array from their id
 function getUserById($id){
   global $con;
-  $query="select * from Users where user_id=".$id;
+  $user=[];
+  $query="select * from Users where user_id='$id'";
   $request=mysqli_query($con,$query);
-  $user = mysqli_fetch_assoc($result);
+  $user = mysqli_fetch_assoc($request);
   return $user;
 }
 
+
+//get Users by the sessions's user information
+function getUserBySessionId($id){
+  global $con;
+  $result=mysqli_query($con, "select * from Users where user_id='$id'")or die('Error In Session');
+  $row=mysqli_fetch_array($result);
+  return $row;
+}
 
 
 //Looping Through All a Server's Sessions in PHP
@@ -65,21 +80,45 @@ foreach($sessionNames as $sessionName) {
 }
 
 
-
 //https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
 //check the status of each users, based on it session
-function getStatus($key,$value){
+//in admin.php => getStatus("user_id",$user["user_id"])
+function getStatus2($key,$value){ // => didnt work properly: DROPPED
   global $con;
   $allSessions=getAllSessions();
   foreach ($allSessions as $s){
     if(isset($s[$key]) && $s[$key] === $value){
         return "In";
     }
-    else {
         return "out";
-    } 
+    }}
+
+// check if the current user is logged In
+function getStatus($id){
+  global $con;
+  $user=getUserById($id);
+  if($user['status']=='1'){
+    return "In";
+  }
+  return "Out";
+}
+
+
+// Once connected : change the status in DB
+function changeStatus($id){
+  global $con;
+  if (isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
+    $request=mysqli_query($con,"update Users set status='1' where user_id='$id'");
   }
 }
+
+// function changeStatus2($id){
+//   global $con;
+//   if (!isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
+//     $request=mysqli_query($con,"update Users set status='0' where user_id='$id'");
+//   }
+// }
+
 
 
 // escape string
@@ -112,6 +151,16 @@ function isAdmin(){
   }
 }
 
+//===================== Disabel / Enable Users ===================== 
+function disable_user($id){
+  global $con;
+  $request=mysqli_query($con,"update Users set user_type=\"blocked\" where user_id='$id'");
+}
+function enable_user($id){
+  global $con;
+  $request=mysqli_query($con,"update Users set user_type=\"user\" where user_id='$id'");
+}
+//=====================  =====================  =====================
  
 
 ?>
