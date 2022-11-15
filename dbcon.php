@@ -6,7 +6,7 @@ $username = "";
 $email = "";
 $errors = array();
 
-$con = mysqli_connect("localhost","root","","login");
+$con = mysqli_connect("localhost","root","12341234","login");
 
 // Check connection
 // if (mysqli_connect_errno())
