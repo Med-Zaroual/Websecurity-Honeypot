@@ -48,9 +48,7 @@ function getUserById($id){
 
 //Looping Through All a Server's Sessions in PHP
 function getAllSessions(){
-
 $allSessions = [];
-
 //location in MacOS
 $sessionNames = scandir(sys_get_temp_dir());
 //$sessionNames = scandir(session_save_path());
