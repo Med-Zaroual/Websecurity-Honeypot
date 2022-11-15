@@ -11,6 +11,8 @@ $row=getUserBySessionId($session_id);
 <div class="form-wrapper-home"> 
     <center><h3>Welcome: <?php echo $row['username']; ?> </h3></center>
 
+<!-- https://bbbootstrap.com/snippets/bootstrap-5-profile-card-animation-74461039 -->
+<!-- https://freefrontend.com/bootstrap-profiles/ -->
     <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
         <div class="card p-4"> 
             <div class=" image d-flex flex-column justify-content-center align-items-center"> 

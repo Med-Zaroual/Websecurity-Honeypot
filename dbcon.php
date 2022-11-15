@@ -105,20 +105,13 @@ function getStatus($id){
 
 
 // Once connected : change the status in DB
+//https://elevenstechwebtutorials.com/detail/45/enable-disable-user-login-in-php
 function changeStatus($id){
   global $con;
   if (isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
     $request=mysqli_query($con,"update Users set status='1' where user_id='$id'");
   }
 }
-
-// function changeStatus2($id){
-//   global $con;
-//   if (!isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
-//     $request=mysqli_query($con,"update Users set status='0' where user_id='$id'");
-//   }
-// }
-
 
 
 // escape string
