@@ -6,8 +6,14 @@ $username = "";
 $email = "";
 $errors = array();
 
-//connect to the database with procedurale style != Object oriented style
+//connect to the database with Procedurale Style 
 $con = mysqli_connect("localhost","root","12341234","login");
+
+//connect to the database with Object Oriented Style
+
+
+
+
 //check_connection();
 
 function check_connection(){
