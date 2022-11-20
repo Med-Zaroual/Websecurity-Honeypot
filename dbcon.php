@@ -6,15 +6,18 @@ $username = "";
 $email = "";
 $errors = array();
 
+//connect to the database with procedurale style != Object oriented style
 $con = mysqli_connect("localhost","root","12341234","login");
+//check_connection();
 
-// Check connection
-// if (mysqli_connect_errno())
-//   {
-//   echo "Failed to connect to MySQL: " . mysqli_connect_error();
-//   }
-// else {
-//   echo "Connected to Database";}
+function check_connection(){
+  if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();}
+  else {
+  echo "Connected to Database";}
+}
+
 
 
 function Nb_log_in(){
@@ -98,7 +101,7 @@ function getStatus($id){
   global $con;
   $user=getUserById($id);
   if($user['status']=='1'){
-    return "In";
+    return "Connected";
   }
   return "Out";
 }

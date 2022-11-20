@@ -6,8 +6,9 @@
 		{
 			// For login security
 			$username = mysqli_real_escape_string($con, $_POST['user']);
-			$password = mysqli_real_escape_string($con, $_POST['pass']);
-			
+			$password = mysqli_real_escape_string($con, md5($_POST['pass']));
+
+			//$password_enc=md5($password);
 			$query= mysqli_query($con, "SELECT * FROM Users WHERE  password='$password' and username='$username'");
 
 			$row= mysqli_fetch_array($query);
