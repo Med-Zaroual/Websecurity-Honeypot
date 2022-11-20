@@ -55,18 +55,9 @@ function getUserById($id){
   global $con;
   $user=[];
   $query="select * from Users where user_id='$id'";
-  $request=mysqli_query($con,$query);
+  $request=mysqli_query($con,$query) or die ('Error In Session');
   $user = mysqli_fetch_assoc($request);
   return $user;
-}
-
-
-//get Users by the sessions's user information
-function getUserBySessionId($id){
-  global $con;
-  $result=mysqli_query($con, "select * from Users where user_id='$id'")or die('Error In Session');
-  $row=mysqli_fetch_array($result);
-  return $row;
 }
 
 
@@ -114,13 +105,14 @@ function getStatus($id){
 
 
 // Once connected : change the status in DB
-//https://elevenstechwebtutorials.com/detail/45/enable-disable-user-login-in-php
 function changeStatus($id){
   global $con;
   if (isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
     $request=mysqli_query($con,"update Users set status='1' where user_id='$id'");
   }
 }
+//https://elevenstechwebtutorials.com/detail/45/enable-disable-user-login-in-php
+
 
 
 // escape string

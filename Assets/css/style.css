@@ -146,13 +146,7 @@ input[type='text']{
 }
 
 
-.profile_info img {
-  display: inline-block; 
-  width: 50px; 
-  height: 50px; 
-  margin: 5px;
-  float: left;
-}
+
 
 .profile_info:after {
   content: "";
@@ -160,10 +154,7 @@ input[type='text']{
   clear: both;
 }
 
-.profile_info div {
-  display: inline-block; 
-  margin: 5px;
-}
+
 
 .content {
   width: 90%;
@@ -330,7 +321,114 @@ input[type='text']{
     }
 }
 
+/*============================ END - Tables/admin Section ===========================*/
 
+
+
+
+/*============================ Profile Home Section ===========================*/
+
+.profile {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+
+.profile_info{
+  padding: 50px;
+  margin: auto;
+}
+
+.image img {
+  display: inline-block; 
+  width: 100px; 
+  height: 100px; 
+  margin-bottom: 10px;
+  float: left;
+}
+
+.btn1 {
+    height: 40px;
+    width: 100px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 12px;
+    border-radius: 20%;
+}
+
+.profile_info .name {
+    font-size: 32px;
+    font-weight: bold;
+    color: #D1D0CE;
+}
+
+.profile_info .idd {
+    font-size: 15px;
+    font-weight: 600
+}
+
+
+.profile_info .email {
+    display: inline-block; 
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.profile_info .follow {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+}
+
+.text span {
+    font-size: 19px;
+    color: white;
+    font-weight: 500;
+
+}
+
+.edit_profile{
+  position: relative;
+  margin: 40px auto;
+}
+
+.edit_profile .btn2{
+  width: 100px;
+  height: 50px;
+  background: #00BFFF  ;
+  border-radius: 10px ;
+  font-size: 15px;
+  
+}
+
+.btn2:hover {
+  background-color: #E5E4E2 ;
+}
+
+.btn1:hover {
+  background-color: #E5E4E2 ;
+}
+
+.reminder .button{
+  width: 150px;
+  line-height: 1;
+  display: inline-block;
+  font-size: 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  background-color: gray;
+  margin-top: 20px;
+  font-family: cursive;
+
+}
+
+
+/*============================ END - Profile Home Section ===========================*/
 
 
 

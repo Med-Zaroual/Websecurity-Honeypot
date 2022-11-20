@@ -16,7 +16,8 @@
 
 			if ($num_row > 0) {			
 				if($row['user_type']=="blocked"){
-					echo "This user is Blocked!";
+					//echo "This user is Blocked!";
+					header('location:error_404.php');
 				}
 				else{
 					$_SESSION['user_id']=$row['user_id'];

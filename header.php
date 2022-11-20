@@ -1,7 +1,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="Assets/css/style.css">
-<link rel="stylesheet" type="text/css" href="Assets/css/home.css">
+<!-- <link rel="stylesheet" type="text/css" href="Assets/css/home.css"> -->
+
 </head>
 
 
@@ -14,5 +15,5 @@
 			<h1><center> Web Technology, Security & Honeypot Project</center></h1>
 		</div>
 	</div>
-	
+
 </header>
