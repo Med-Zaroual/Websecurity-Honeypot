@@ -88,6 +88,11 @@ function getStatus($id){
   return "Out";
 }
 
+function add_image($path,$id){
+  global $con;
+    $request=mysqli_query($con,"update Users set image='$path' where user_id='$id'");
+}
+
 
 // Once connected : change the status in DB
 function changeStatus($id){

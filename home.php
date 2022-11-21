@@ -16,10 +16,22 @@ $row=getUserById($session_id);
     <div class="profile">
 
         <div class="image">
-            <img src="https://i.imgur.com/wvxPV9S.png"/>
-            <!-- <img src="Assets/img/bg.jpg"/> -->
+            <!-- <img src="https://i.imgur.com/wvxPV9S.png"/> -->
+            <?php
+            
+            
+            ?>
+            
+
             <br><br>
-            <button class="btn1">Upload avatar</button>
+            <!-- <form method="post" action="upload_img.php">
+                <input type="file" name="avatar" id="myAvatar" class="btn1">Upload</button>
+            </form> -->
+            <form method="post" id="upload_img "action="home.php" enctype="multipart/form-data">
+                <input type="file" name="avatar" id="myAvatar"/>
+                <input type="submit" name ="upload" value="Upload" class="btn1">
+            </form>
+            
         </div>
 
         <div class="profile_info">
