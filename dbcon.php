@@ -6,10 +6,10 @@ $username = "";
 $email = "";
 $errors = array();
 
-//connect to the database with Procedurale Style 
+//connect to database with Procedurale Style 
 $con = mysqli_connect("localhost","root","12341234","login");
 
-//connect to the database with Object Oriented Style
+//connect to database with Object Oriented Style
 
 
 
@@ -45,7 +45,6 @@ function getAllUsers(){
   global $con;
   $users=array();
   $result=mysqli_query($con,"select * from Users");
-  //$result=mysqli_query($con,"select * from Users where user_type='Normal user'");
   return $users=mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
 
@@ -67,7 +66,6 @@ $allSessions = [];
 //location in MacOS
 $sessionNames = scandir(sys_get_temp_dir());
 //$sessionNames = scandir(session_save_path()); => on linux
-
 foreach($sessionNames as $sessionName) {
     $sessionName = str_replace("sess_","",$sessionName);
     if(strpos($sessionName,".") === false) { //This skips temp files that aren't sessions
@@ -79,19 +77,6 @@ foreach($sessionNames as $sessionName) {
 } return $allSessions;
 }
 
-
-//https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
-//check the status of each users, based on it session
-//in admin.php => getStatus("user_id",$user["user_id"])
-function getStatus2($key,$value){ // => didnt work properly: DROPPED
-  global $con;
-  $allSessions=getAllSessions();
-  foreach ($allSessions as $s){
-    if(isset($s[$key]) && $s[$key] === $value){
-        return "In";
-    }
-        return "out";
-    }}
 
 // check if the current user is logged In
 function getStatus($id){
@@ -156,5 +141,19 @@ function enable_user($id){
 }
 //=====================  =====================  =====================
  
+
+ //https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
+//check the status of each users, based on it session
+//in admin.php => getStatus("user_id",$user["user_id"])
+function getStatus2($key,$value){ // => didnt work properly: DROPPED
+  global $con;
+  $allSessions=getAllSessions();
+  foreach ($allSessions as $s){
+    if(isset($s[$key]) && $s[$key] === $value){
+        return "In";
+    }
+        return "out";
+    }}
+
 
 ?>
