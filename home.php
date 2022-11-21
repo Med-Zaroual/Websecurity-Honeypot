@@ -3,6 +3,22 @@ include('dbcon.php');
 include('session.php'); 
 
 $row=getUserById($session_id);
+$image=getImageByUserId($session_id);
+
+// $msg="";
+//   // If upload button is clicked ...
+//   if(isset($_POST['upload'])){
+//     // Get image name 
+//     $image=$_FILES['avatar']['name'];
+//     // image file directory
+//     $target = "Assets/img/".basename($image);
+//     $request=mysqli_query($con,"INSERT INTO Images (path,user_id) values ('$image','$session_id')");
+//     if (move_uploaded_file($_FILES['avatar']['tmp_name'], $target)) {
+//       $msg = "Image uploaded successfully";
+//     }else{
+//       $msg = "Failed to upload image";
+//     }
+//   }
 
 
 ?>
@@ -18,19 +34,29 @@ $row=getUserById($session_id);
 
         <div class="image">
             <!-- <img src="https://i.imgur.com/wvxPV9S.png"/> -->
-            <?php
+            <div id="preview">
+                <?php
+                if(isset($image['image'])){
+                    $name_image=$image['image'];
+                    echo '<img src="Assets/img/'.$name_image.'" />';
+                    }
+                else{
+                    echo 'Please Select Image File';
+                }
+                ?>
+
+                
+            </div>
             
-            
-            ?>
             
 
             <br><br>
             <!-- <form method="post" action="upload_img.php">
                 <input type="file" name="avatar" id="myAvatar" class="btn1">Upload</button>
             </form> -->
-            <form method="post" id="upload_img "action="home.php" enctype="multipart/form-data">
+            <form method="post" id="upload_img" action="upload.php" enctype="multipart/form-data">
                 <input type="file" name="avatar" id="myAvatar"/>
-                <input type="submit" name ="upload" value="Upload" class="btn1">
+                <input type="submit" name="upload" value="Upload" class="btn1">
             </form>
             
         </div>
@@ -79,6 +105,25 @@ $row=getUserById($session_id);
 </body>
 </html>
 
+<script type="text/javascript">
+$(document).ready(function(){   
+    $('#upload_img').on('submit', function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"upload.php",
+            method:"POST",
+            data:new FormData(this),
+            contentType:false,
+            cache:false,
+            processData:false,
+            success:function(data){
+                $('#preview').html(data);
+            }
+        })
+    });
+});  
+
+</script>
 
 
 <!-- notification message -->

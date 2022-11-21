@@ -49,6 +49,7 @@ function getAllUsers(){
 }
 
 
+
 //return user array from their id
 function getUserById($id){
   global $con;
@@ -88,9 +89,39 @@ function getStatus($id){
   return "Out";
 }
 
-function add_image($path,$id){
+
+function getAllImages(){
   global $con;
-    $request=mysqli_query($con,"update Users set image='$path' where user_id='$id'");
+  $images=array();
+  $result=mysqli_query($con,"select * from Images");
+  return $images=mysqli_fetch_all($result,MYSQLI_ASSOC);
+}
+
+function getImageByUserId($id){
+  global $con;
+  $image=[];
+  $request=mysqli_query($con,"select * from Images where user_id='$id'");
+  $image = mysqli_fetch_assoc($request);
+  return $image;
+}
+
+function add_image($id){
+  global $con;
+  $msg="";
+  // If upload button is clicked ...
+  if(isset($_POST['upload'])){
+    // Get image name 
+    $image=$_FILES['avater']['name'];
+    // image file directory
+    $target = "Assets/img/".basename($image);
+    $request=mysqli_query($con,"insert into Images (path,user_id) values ('$image','$id')");
+    if (move_uploaded_file($_FILES['avatar']['tmp_name'], $target)) {
+      $msg = "Image uploaded successfully";
+    }else{
+      $msg = "Failed to upload image";
+    }
+  }
+    // $request=mysqli_query($con,"update Users set image='$path' where user_id='$id'");
 }
 
 

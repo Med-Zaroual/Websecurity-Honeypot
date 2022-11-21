@@ -339,6 +339,10 @@ input[type='text']{
   margin: auto;
 }
 
+.image {
+    width: 40%;
+}
+
 .image img {
   display: inline-block; 
   width: 100px; 
