@@ -7,7 +7,7 @@ $email = "";
 $errors = array();
 
 //connect to database with Procedurale Style 
-$con = mysqli_connect("localhost","root","12341234","login");
+$con = mysqli_connect("localhost","med","123456789","login");
 
 //connect to database with Object Oriented Style
 

@@ -1,15 +1,3 @@
-<?php 
-include('session.php'); 
-//session_start();
-include('header.php'); 
-include ('dbcon.php');
-
-$liste=getAllUsers();
-$nb1=count($liste);
-$nb=Nb_log_in();
-$row=getUserById($session_id);
-
-?>
 
 <h1><center>Welcome in the Admin Panel, Mr/Mrs: <i><?php echo $row["username"];?></i></center></h1>
 
