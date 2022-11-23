@@ -19,7 +19,7 @@ if (isset($_POST['register']))
         $password=md5($password1);
 
         //Ship data to Database
-        $query= "INSERT INTO Users (username , email, user_type,  password, status) VALUES('$username','$email','user','$password','0')";
+        $query= "INSERT INTO Users (username , email, user_type,  password, image, status) VALUES('$username','$email','user','$password','','0')";
         $result=mysqli_query($con,$query);
 
 

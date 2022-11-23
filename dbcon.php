@@ -39,6 +39,12 @@ function Nb_log_in(){
 }
 
 
+function setImgDownload($imagePath) {           
+    $image = imagecreatefromjpeg($imagePath);
+    header('Content-Type: image/jpeg');
+    imagejpeg($image);
+}
+
 //get list of all users
 //https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
 function getAllUsers(){

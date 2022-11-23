@@ -1,5 +1,5 @@
 
-<?php include('dbcon.php'); 
+<?php require ('dbcon.php'); 
 	include('session.php'); 
 
 function move_to_folder($file,$dest){
