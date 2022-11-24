@@ -8,8 +8,8 @@ $errors = array();
 
 //connect to database with Procedurale Style 
 function getCn(){
-    require("Config/config.php");
-
+//    require("Config/config.php");
+  global $config;
 	$server = $config["database_server"];
 	$db = $config["database_name"];
 	$user = $config["database_user"];
@@ -18,12 +18,6 @@ function getCn(){
 	if(!$conn)	$conn = mysqli_connect($server,$user,$password,$db);
     return $conn;
 };
-
-$con = mysqli_connect("localhost","root","12341234","login");
-
-//connect to database with Object Oriented Style
-
-
 
 
 //check_connection();

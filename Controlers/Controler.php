@@ -104,7 +104,9 @@ function signupAction(){
 			if($_POST["pass"] !== $_POST["conf_pass"] ) $erreur["conf_pass"] = "the password is not equal to!..";
 
 			if ($erreur == []) { //TODO: manage error massage
+				chech_registration();
 				header ("location: index.php");
+
 			}
 	}
 views('vRegister.php',['error' => $erreur]);
@@ -190,6 +192,7 @@ function logoutAction(){
 
 
 function chech_registration(){ // called inside
+	$con = getCn();
 if (isset($_POST['register']))
 {
 	//assign data received from post to variables
