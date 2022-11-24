@@ -52,7 +52,7 @@ function chechLogin(){
 				}
 		}
 		else{	
-				views('vIndex.php');
+				header('location:index.php');
 				echo 'Invalid Username and Password Combination';
 		}
 		// views('vIndex.php');
