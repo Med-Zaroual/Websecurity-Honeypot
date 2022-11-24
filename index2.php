@@ -10,11 +10,14 @@ require ("Controlers/Controler.php"); //controler
 
 
 try{
-	session();
-	$originalAction = (!empty($_GET["action"]))? $_GET["action"]: "index";
-	if ($originalAction !== "signup" )
-		$action = (!empty($_SESSION["user_type"]))?  "index" : $originalAction;
-	else $action = $originalAction;
+	session_start();
+
+	$action = (!empty($_GET["action"]))? $_GET["action"]: "index";
+
+	if (!isset($_SESSION["user_id"]) || (trim($_SESSION['user_id']))
+	 == '' and $action != "signup" ){
+		$action =  "index" ;
+	}
 	$action = $action."Action";
 
 	if (is_callable($action)) 
@@ -32,4 +35,3 @@ catch(Exception $e) {//need more catch and detailed exploration of exeption this
 }
 
 ?>
-

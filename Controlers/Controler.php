@@ -3,8 +3,7 @@
 
 function indexAction(){
 	$erreur = [];
-	// startsession
-	session_start();
+	
 	if ($_SERVER["REQUEST_METHOD"]=="POST") {
 			if(empty($_POST["user"]))
 				$erreur["user"]   ="Le user est vide !..."   ;
@@ -63,7 +62,7 @@ function chechLogin(){
 
 // function 
 function adminAction(){
-	$session_id=session();
+	$session_id=$_SESSION['user_id'];
 	$list = getAllUsers();
 	$nb1 = count($list);
 	$nb = Nb_log_in();
@@ -72,7 +71,7 @@ function adminAction(){
 };
 
 function userAction(){
-$session_id=session();
+$session_id=$_SESSION['user_id'];
 $row = getUserById($session_id);
 views('vHome.php',['row' => $row]);
 
@@ -119,7 +118,7 @@ function move_to_folder($file,$dest){
 }
 
 function uploadAction(){
-  $session_id=session();
+  $session_id=$_SESSION['user_id'];
   $msg="";
   $con = getCn();
   // If upload button is clicked ...
