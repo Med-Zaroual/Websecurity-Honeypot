@@ -39,7 +39,7 @@ function check_connection(){
 
 
 function Nb_log_in(){
-  global $con;
+  $con = getCn();
   # $con = getCn();
   $nb=0;
   $users=getAllUsers();
@@ -61,7 +61,7 @@ function setImgDownload($imagePath) {
 //get list of all users
 //https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
 function getAllUsers(){
-  global $con;
+  $con = getCn();
   # $con = getCn();
   $users=array();
   $result=mysqli_query($con,"select * from Users");
@@ -72,7 +72,7 @@ function getAllUsers(){
 
 //return user array from their id
 function getUserById($id){
-  global $con;
+  $con = getCn();
   $user=[];
   $query="select * from Users where user_id='$id'";
   $request=mysqli_query($con,$query) or die ('Error In Session');
@@ -101,7 +101,7 @@ foreach($sessionNames as $sessionName) {
 
 // check if the current user is logged In
 function getStatus($id){
-  global $con;
+  $con = getCn();
   # $con = getCn();
   $user=getUserById($id);
   if($user['status']=='1'){
@@ -112,7 +112,7 @@ function getStatus($id){
 
 
 function getAllImages(){
-  global $con;
+  $con = getCn();
   # $con = getCn();
   $images=array();
   $result=mysqli_query($con,"select * from Images");
@@ -120,7 +120,7 @@ function getAllImages(){
 }
 
 function getImageByUserId($id){
-  global $con;
+  $con = getCn();
   # $con = getCn();
   $image=[];
   $request=mysqli_query($con,"select * from Images where user_id='$id'");
@@ -129,7 +129,7 @@ function getImageByUserId($id){
 }
 
 function add_image($id){
-  global $con;
+  $con = getCn();
   $msg="";
   // If upload button is clicked ...
   if(isset($_POST['upload'])){
@@ -150,7 +150,7 @@ function add_image($id){
 
 // Once connected : change the status in DB
 function changeStatus($id){
-  global $con;
+  $con = getCn();
   # con = getCn();
   if (isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
     $request=mysqli_query($con,"update Users set status='1' where user_id='$id'");
@@ -162,7 +162,7 @@ function changeStatus($id){
 
 // escape string
 function escape($val){
-  global $con;
+  $con = getCn();
   #con = getCn();
   return mysqli_real_escape_string($con, trim($val));
 }
@@ -193,12 +193,12 @@ function display_error() {
 
 //===================== Disabel / Enable Users ===================== 
 function disable_user($id){
-  global $con;
+  $con = getCn();
   #con=getCn();
   $request=mysqli_query($con,"update Users set user_type=\"blocked\" where user_id='$id'");
 }
 function enable_user($id){
-  global $con;
+  $con = getCn();
   #con=getCn();
   $request=mysqli_query($con,"update Users set user_type=\"user\" where user_id='$id'");
 }
@@ -209,7 +209,7 @@ function enable_user($id){
 //check the status of each users, based on it session
 //in admin.php => getStatus("user_id",$user["user_id"])
 function getStatus2($key,$value){ // => didnt work properly: DROPPED
-  global $con;
+  $con = getCn();
   #con=getCn();
   $allSessions=getAllSessions();
   foreach ($allSessions as $s){
