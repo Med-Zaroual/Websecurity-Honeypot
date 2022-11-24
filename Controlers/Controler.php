@@ -105,7 +105,7 @@ function signupAction(){
 
 			if ($erreur == []) { //TODO: manage error massage
 				chech_registration();
-				header ("location: index.php");
+				header ("location: index.php?action=user");
 
 			}
 	}
