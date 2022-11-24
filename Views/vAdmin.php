@@ -31,7 +31,7 @@
 							<td>".$user["email"]."
 							<td>".$user["user_type"]."
 							<td class=\"select\"><a class=\"button\" href=\"index.php?action=enable&user=$id\">Enable</a></td>
-							<td class=\"select\"><a class=\"button\" href=\"disable.php?action=disable&user=$id\">Disable</a></td>
+							<td class=\"select\"><a class=\"button\" href=\"index.php?action=disable&user=$id\">Disable</a></td>
 							</tr>
 						";
 					}

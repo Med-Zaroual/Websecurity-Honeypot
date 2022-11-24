@@ -26,7 +26,7 @@
 
             <br><br>
            
-            <form method="post" id="upload_img" action="upload1.php" enctype="multipart/form-data">
+            <form method="post" id="upload_img" action="index.php?action=upload" enctype="multipart/form-data">
                 <input type="file" name="avatar" id="myAvatar"/>
                 <input type="submit" name="upload" value="Upload" class="btn1">
             </form>
@@ -82,7 +82,7 @@ $(document).ready(function(){
     $('#upload_img').on('submit', function(event){
         event.preventDefault();
         $.ajax({
-            url:"upload.php",
+            url:"index.php?action=upload",
             method:"POST",
             data:new FormData(this),
             contentType:false,

@@ -25,7 +25,7 @@ try{
 }
 catch(Exception $e) {//need more catch and detailed exploration of exeption this is quite shit even tho i can'y grassep how to make it better 
   $errorMessage = $e->getMessage();
-  require("views/vError.php");
+  require("Views/vError.php");
 }
 
 ?>

@@ -3,6 +3,8 @@
 
 function indexAction(){
 	$erreur = [];
+	// startsession
+	session_start();
 	if ($_SERVER["REQUEST_METHOD"]=="POST") {
 			if(empty($_POST["user"]))
 				$erreur["user"]   ="Le user est vide !..."   ;
@@ -11,12 +13,8 @@ function indexAction(){
 		
 
 			if ($erreur == []) {
-				// echo("hhihihiih3");
-
 				// $t = array('user'=>$_POST['user'],'pass'=>$_POST['pass']);
 				chechlogin();
-			// $major=getDetail($_POST['code'])["filiere"];
-					// header ("location: index.php?action=");
 			}
 	}
 	views("vIndex.php",["erreur" => $erreur]);
@@ -35,7 +33,7 @@ function chechLogin(){
 		if ($num_row > 0) {			
 			if($row['user_type']=="blocked"){
 				//echo "This user is Blocked!";
-				header('location: error_403.php');
+				views('vError_403.php');
 			}
 			else{
 				$_SESSION['user_id']=$row['user_id'];
@@ -44,17 +42,17 @@ function chechLogin(){
 				// isAdmin();
 				if ($row['user_type'] === 'admin'){
 					  header('location: index.php?action=admin');
-					  echo("halohalo1");
+					//   echo("halohalo1");
 				
 					}
 					else{
 						header('location: index.php?action=user');
-						echo("halohalo2");
+						// echo("halohalo2");
 					}
 				}
 		}
 		else{	
-				header('location:index.php');
+				views('vIndex.php');
 				echo 'Invalid Username and Password Combination';
 		}
 	}
@@ -72,9 +70,10 @@ function adminAction(){
 };
 
 function userAction(){
-// session();
+session();
 $row = getUserById($session_id);
-views('vHome.php');
+views('vHome.php',['row' => $row]);
+
 };
 
 function isAdmin(){
@@ -109,6 +108,37 @@ function signupAction(){
 	}
 views('vRegister.php');
 };
+function move_to_folder($file,$dest){
+	if (move_uploaded_file($file, $dest)) {
+		$msg = "Image uploaded successfully";
+	}else{
+		$msg = "Failed to upload image";
+	}
+}
+
+function uploadAction(){
+  $msg="";
+  $con = getCn();
+  // If upload button is clicked ...
+  if(isset($_POST['upload'])){
+	// Get image name 
+	if(isset($_FILES['avatar']['name'])){
+		  
+			  //image file directory
+			  $image=$_FILES['avatar']['name'];
+			  $target = "Assets/img/".basename($image);
+				 //$check_image=getImageByUserId($session_id);
+				  $request=mysqli_query($con,"UPDATE Users set image='$image' where user_id='$session_id'");
+	   
+				  //put the picture in img folder
+				  move_to_folder($_FILES['avatar']['tmp_name'],$target);
+						  
+				  header("location:index.php?action=user");
+	  }    	
+  }
+  
+  views('vHome.php');
+};
 
 function session(){
 	session_start();
@@ -125,17 +155,26 @@ function enableAction(){
 	if(isset($_GET['user'])){
 		$id=$_GET['user'];
 		enable_user($id);
-		header('location:index.php?action=admin');
+		header('location: index.php?action=admin');
+		// adminAction();
 	}
 };
 
 function disableAction(){
 	if(isset($_GET['user'])){
 		$id=$_GET['user'];
-		disable_user($id);
-		header('location:index.php?action=admin');
+		$user=getUserById($id);
+		if($user['user_type'] !== "admin"){	
+			disable_user($id);
+			header('location:index.php?action=admin');
+		}else{
+			// header('location:index.php?action')
+			// header('lo')
+			views('vError_403.php');
+		}
 	}
 };
+
 function logoutAction(){
 	session_destroy();
 
