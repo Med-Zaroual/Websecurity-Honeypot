@@ -1,7 +1,7 @@
 
 <div class="form-wrapper">
   
-  <form action="check_login.php" method="post">
+  <form action="" method="post">
     <h3>Login here</h3>
 	
     <div class="form-item">
@@ -18,8 +18,8 @@
   </form>
 
   <div class="reminder">
-    <p>Not a member? <a href="register.php">Sign up now</a></p>
-    <p><a href="#">Forgot password?</a></p>
+    <p>Not a member? <a href="index.php?action=signup">Sign up now</a></p>
+    <p><a href="index.php?">Forgot password?</a></p>
   </div>
   
 </div>

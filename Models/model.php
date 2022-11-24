@@ -7,7 +7,19 @@ $email = "";
 $errors = array();
 
 //connect to database with Procedurale Style 
-$con = mysqli_connect("localhost","root","12341234","login");
+function getCn(){
+    require("Config/config.php");
+
+	$server = $config["database_server"];
+	$db = $config["database_name"];
+	$user = $config["database_user"];
+	$password = $config["database_password"];
+	static $conn;
+	if(!$conn)	$conn = mysqli_connect($server,$user,$password,$db);
+    return $conn;
+};
+
+$con = mysqli_connect("localhost","med","123456789","login");
 
 //connect to database with Object Oriented Style
 
@@ -28,6 +40,7 @@ function check_connection(){
 
 function Nb_log_in(){
   global $con;
+  # $con = getCn();
   $nb=0;
   $users=getAllUsers();
   for($i=0;$i<count($users);$i++){
@@ -49,6 +62,7 @@ function setImgDownload($imagePath) {
 //https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
 function getAllUsers(){
   global $con;
+  # $con = getCn();
   $users=array();
   $result=mysqli_query($con,"select * from Users");
   return $users=mysqli_fetch_all($result,MYSQLI_ASSOC);
@@ -88,6 +102,7 @@ foreach($sessionNames as $sessionName) {
 // check if the current user is logged In
 function getStatus($id){
   global $con;
+  # $con = getCn();
   $user=getUserById($id);
   if($user['status']=='1'){
     return "Connected";
@@ -98,6 +113,7 @@ function getStatus($id){
 
 function getAllImages(){
   global $con;
+  # $con = getCn();
   $images=array();
   $result=mysqli_query($con,"select * from Images");
   return $images=mysqli_fetch_all($result,MYSQLI_ASSOC);
@@ -105,6 +121,7 @@ function getAllImages(){
 
 function getImageByUserId($id){
   global $con;
+  # $con = getCn();
   $image=[];
   $request=mysqli_query($con,"select * from Images where user_id='$id'");
   $image = mysqli_fetch_assoc($request);
@@ -134,6 +151,7 @@ function add_image($id){
 // Once connected : change the status in DB
 function changeStatus($id){
   global $con;
+  # con = getCn();
   if (isset($_SESSION['user_id']) && $_SESSION['user_id']=$id){
     $request=mysqli_query($con,"update Users set status='1' where user_id='$id'");
   }
@@ -145,6 +163,7 @@ function changeStatus($id){
 // escape string
 function escape($val){
   global $con;
+  #con = getCn();
   return mysqli_real_escape_string($con, trim($val));
 }
 
@@ -163,22 +182,24 @@ function display_error() {
 }
 
 
-function isAdmin(){
-  if ($_SESSION['user_type'] === 'admin'){
-    header('location:index.php&action=admin');
-  }
-  else{
-    header('location:index.php&action=user');
-  }
-}
+// function isAdmin(){
+//   if ($_SESSION['user_type'] === 'admin'){
+//     header('location:admin.php');
+//   }
+//   else{
+//     header('location:home.php');
+//   }
+// }
 
 //===================== Disabel / Enable Users ===================== 
 function disable_user($id){
   global $con;
+  #con=getCn();
   $request=mysqli_query($con,"update Users set user_type=\"blocked\" where user_id='$id'");
 }
 function enable_user($id){
   global $con;
+  #con=getCn();
   $request=mysqli_query($con,"update Users set user_type=\"user\" where user_id='$id'");
 }
 //=====================  =====================  =====================
@@ -189,6 +210,7 @@ function enable_user($id){
 //in admin.php => getStatus("user_id",$user["user_id"])
 function getStatus2($key,$value){ // => didnt work properly: DROPPED
   global $con;
+  #con=getCn();
   $allSessions=getAllSessions();
   foreach ($allSessions as $s){
     if(isset($s[$key]) && $s[$key] === $value){
@@ -198,4 +220,4 @@ function getStatus2($key,$value){ // => didnt work properly: DROPPED
     }}
 
 
-?>  
+?>

@@ -20,4 +20,4 @@
 
 </header>
 
-<?= view ?>
+<?= $view ?>

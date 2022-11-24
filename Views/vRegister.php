@@ -1,7 +1,7 @@
 
 <div class="form-wrapper-Register">
   
-  <form action="check_registration.php" method="post">
+  <form action="" method="post">
     <h3>Registration</h3>
 	
     <label>Username:</label>

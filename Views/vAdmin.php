@@ -30,8 +30,8 @@
 							<td>".$user["username"]."
 							<td>".$user["email"]."
 							<td>".$user["user_type"]."
-							<td class=\"select\"><a class=\"button\" href=\"enable.php?user=$id\">Enable</a></td>
-							<td class=\"select\"><a class=\"button\" href=\"disable.php?user=$id\">Disable</a></td>
+							<td class=\"select\"><a class=\"button\" href=\"index.php?action=enable&user=$id\">Enable</a></td>
+							<td class=\"select\"><a class=\"button\" href=\"disable.php?action=disable&user=$id\">Disable</a></td>
 							</tr>
 						";
 					}
@@ -56,7 +56,7 @@
 
 <div class="reminder">
     <p>
-    	<a href="logout.php" class="button">Log out</a>
+    	<a href="index.php?action=logout" class="button">Log out</a>
     </p>
 </div>
 
