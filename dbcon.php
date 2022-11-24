@@ -1,13 +1,14 @@
 <?php
 //session_start();
 //include('session2.php');
+// include('Config/config.php')
 
 $username = "";
 $email = "";
 $errors = array();
 
 //connect to database with Procedurale Style 
-$con = mysqli_connect("localhost","root","12341234","login");
+$con = mysqli_connect("localhost","med","123456789","login");
 
 //connect to database with Object Oriented Style
 
@@ -165,10 +166,12 @@ function display_error() {
 
 function isAdmin(){
   if ($_SESSION['user_type'] === 'admin'){
-    header('location:index.php&action=admin');
+    // header('location:index.php&action=admin');
+    header('location: admin.php');
   }
   else{
-    header('location:index.php&action=user');
+    // header('location:index.php&action=user');
+    header('location:home.php');
   }
 }
 
