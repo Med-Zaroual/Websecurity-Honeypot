@@ -1,8 +1,7 @@
 <?php
 // this is mvc index 
 // there is a need to 
-require("Config/config.php");
-
+require("Config/config2.php");
 require ("Models/model.php"); //model
 require("Views/response.php"); //view
 require ("Controlers/Controler.php"); //controler
@@ -14,8 +13,7 @@ try{
 
 	$action = (!empty($_GET["action"]))? $_GET["action"]: "index";
 
-	if (!isset($_SESSION["user_id"]) || (trim($_SESSION['user_id']))
-	 == '' and $action != "signup" ){
+	if (!isset($_SESSION["user_id"]) || (trim($_SESSION['user_id']))== '' and $action != "signup" ){
 		$action =  "index" ;
 	}
 	$action = $action."Action";

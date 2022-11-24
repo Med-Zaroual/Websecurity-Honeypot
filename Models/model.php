@@ -10,6 +10,7 @@ $errors = array();
 function getCn(){
 //    require("Config/config.php");
   global $config;
+
 	$server = $config["database_server"];
 	$db = $config["database_name"];
 	$user = $config["database_user"];
