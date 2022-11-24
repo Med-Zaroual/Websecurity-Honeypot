@@ -69,7 +69,7 @@
     </center>
 
     <div class="reminder">
-        <p><a href="index.php/?action=logout" class="button">Log out</a></p>
+        <p><a href="index.php?action=logout" class="button">Log out</a></p>
     </div>
 
 </div>

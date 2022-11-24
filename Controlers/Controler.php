@@ -26,7 +26,7 @@ function chechLogin(){
 		// For login security 
 		$username = mysqli_real_escape_string($con, $_POST['user']);
 		$password = mysqli_real_escape_string($con, md5($_POST['pass']));
-		//$password_enc=md5($password);
+
 		$query= mysqli_query($con, "SELECT * FROM Users WHERE  password='$password' and username='$username'");
 		$row= mysqli_fetch_array($query);
 		$num_row= mysqli_num_rows($query);
@@ -38,30 +38,32 @@ function chechLogin(){
 			else{
 				$_SESSION['user_id']=$row['user_id'];
 				changeStatus($row['user_id']); // Change status to '1', Once connected.
+				echo($row['user_type']."howhowHOWHOW");
 				$_SESSION['user_type']=$row['user_type'];
-				// isAdmin();
-				if ($row['user_type'] === 'admin'){
-					  header('location: index.php?action=admin');
-					//   echo("halohalo1");
+				isAdmin();
+				// if ($_SESSION['user_type'] === 'admin'){
+				// 	  header('location: index.php?action=admin');
+				// 	//   echo("halohalo1");
 				
-					}
-					else{
-						header('location: index.php?action=user');
-						// echo("halohalo2");
-					}
+				// 	}
+				// 	else{
+				// 		header('location: index.php?action=user');
+				// 		// echo("halohalo2");
+				// 	}
 				}
 		}
 		else{	
 				views('vIndex.php');
 				echo 'Invalid Username and Password Combination';
 		}
+		// views('vIndex.php');
 	}
 	// views('vIndex.php');
 };
 
 // function 
 function adminAction(){
-	// session();
+	$session_id=session();
 	$list = getAllUsers();
 	$nb1 = count($list);
 	$nb = Nb_log_in();
@@ -70,7 +72,7 @@ function adminAction(){
 };
 
 function userAction(){
-session();
+$session_id=session();
 $row = getUserById($session_id);
 views('vHome.php',['row' => $row]);
 
@@ -102,11 +104,11 @@ function signupAction(){
 			if(empty($_POST["conf_pass"]))  $erreur["conf_pass"]    ="Le confirmation password est vide !...."   ;
 			if($_POST["pass"] !== $_POST["conf_pass"] ) $erreur["conf_pass"] = "the password is not equal to!..";
 
-			if ($erreur == []) {
-				// header ("location: index.php?action=");
+			if ($erreur == []) { //TODO: manage error massage
+				header ("location: index.php");
 			}
 	}
-views('vRegister.php');
+views('vRegister.php',['error' => $erreur]);
 };
 function move_to_folder($file,$dest){
 	if (move_uploaded_file($file, $dest)) {
@@ -117,6 +119,7 @@ function move_to_folder($file,$dest){
 }
 
 function uploadAction(){
+  $session_id=session();
   $msg="";
   $con = getCn();
   // If upload button is clicked ...
@@ -147,7 +150,7 @@ function session(){
 		header("location: index.php");
 		exit();
 	}
-	$session_id=$_SESSION['user_id'];
+	return $_SESSION['user_id'];
 };
 
 
@@ -176,11 +179,13 @@ function disableAction(){
 };
 
 function logoutAction(){
-	session_destroy();
-
+	session_start();
 	$session_id=$_SESSION['user_id'];
-	
+	echo($session_id);
+	session_destroy();
+	echo($_SESSION['user_id']);
 	$request=mysqli_query(getCn(),"update Users set status='0' where user_id='$session_id'");
+	// echo("help");
 	header('location: index.php');
 };
 
@@ -242,6 +247,3 @@ function receptionOption($data)
 	
 };
 	
-
-
-
