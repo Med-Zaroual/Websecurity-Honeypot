@@ -192,7 +192,7 @@ function logoutAction(){
 
 
 function chech_registration(){ // called inside
-	$con = getCn();
+	$con = getCn();	
 if (isset($_POST['register']))
 {
 	//assign data received from post to variables

@@ -8,8 +8,7 @@ $errors = array();
 
 //connect to database with Procedurale Style 
 function getCn(){
-//    require("Config/config.php");
-  global $config;
+   require("Config/config.php");
 
 	$server = $config["database_server"];
 	$db = $config["database_name"];
