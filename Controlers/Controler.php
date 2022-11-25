@@ -160,8 +160,9 @@ function enableAction(){
 		$id=$_GET['user'];
 		enable_user($id);
 		header('location: index.php?action=admin');
-		// adminAction();
 	}
+	views('vError_403.php');
+
 };
 
 function disableAction(){
@@ -172,11 +173,10 @@ function disableAction(){
 			disable_user($id);
 			header('location:index.php?action=admin');
 		}else{
-			// header('location:index.php?action')
-			// header('lo')
 			views('vError_403.php');
 		}
 	}
+	views('vError_403.php');
 };
 
 function logoutAction(){
