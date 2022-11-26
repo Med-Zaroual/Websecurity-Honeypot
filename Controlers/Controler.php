@@ -161,7 +161,7 @@ function enableAction(){
 		enable_user($id);
 		header('location: index.php?action=admin');
 	}
-	views('vError_403.php');
+	views('vError_418.php');
 
 };
 
@@ -176,7 +176,7 @@ function disableAction(){
 			views('vError_403.php');
 		}
 	}
-	views('vError_403.php');
+	views('vError_418.php');
 };
 
 function logoutAction(){
