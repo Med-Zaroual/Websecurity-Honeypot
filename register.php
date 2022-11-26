@@ -12,12 +12,12 @@
 	
     <label>Username:</label>
       <div class="form-item">
-		    <input type="text" name="user" value="<?php echo $username ?>" required="required" placeholder="Full Name" autofocus required></input>
+		    <input type="text" name="user"  required="required" placeholder="Full Name" autofocus required></input>
       </div>
     
     <label>Email:</label>
       <div class="form-item">
-		    <input type="text" name="email" value="<?php echo $email ?>" required="required" placeholder="Type your Email" ></input>
+		    <input type="text" name="email" required="required" placeholder="Type your Email" ></input>
       </div>
 
     <label>Password: </label>

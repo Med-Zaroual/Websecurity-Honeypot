@@ -1,0 +1,44 @@
+---
+
+#install git,apache,python & OpenSSL
+
+- name: Update all packages to their latest version
+  apt:
+    name: "*"
+    state: latest
+
+- name: install Git
+  apt: "name=git update_cache=yes state=latest"
+
+- name: install apache2
+  apt: "name=apache2 update_cache=yes state=latest"
+
+
+#Recommended to install php manually: requires too many libraries and configuration
+#- name: install php
+ # apt: "name=php update_cache=yes state=latest"
+
+#before installing mysql: Download Mysql Package and Install it ( wget and apt install ./----.deb)
+- name: install mysql
+  apt: "name=mysql-server update_cache=yes state=latest"
+
+- name: Update all packages to their latest version
+  apt:
+    name: "*"
+    state: latest
+
+
+- name: install python3
+  apt: "name=python3-venv"
+
+- name: Install PIP
+  apt: "name=python3-pip"
+
+- name: Install PyOpenSSL
+  pip:
+    name: PyOpenSSL
+
+- name: Install cryptography
+  pip:
+    name: cryptography
+

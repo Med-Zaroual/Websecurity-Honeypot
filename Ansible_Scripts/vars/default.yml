@@ -1,0 +1,9 @@
+---
+
+source_folder: "/home/killerb/project/Websecurity-Honeypot/"
+dest_folder: "/var/www/project"
+#git_repo: "https://{{ githubuser }}:{{ githubpassword }}@git.ti.howest.be/TI/2021-2022/s3/web-security/lab1.git"
+git_repo: "ssh://git@git.ti.howest.be/TI/2022-2023/s3/websecurity-and-honeypot/students/group-27/Websecurity-Honeypot.git"
+key_file: "/home/killerb/.ssh/id_ed25519"
+http_conf: "project.conf"
+#https_conf: "websecurity-ssl.conf"

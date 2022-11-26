@@ -1,0 +1,37 @@
+---
+# Solution lab 2 (Installation, Apache, GIT & setup HTTP+HTTPS site)
+# Install the cypto package first on the ansible controller via `ansible-galaxy collection install community.crypto`
+# tasks/install.yml --> installs the needed software
+# tasts/config.yml --> configures GIT, Apache, creates SSL certificates and enables the sites
+# vars/default.yml --> variables for config
+# Prerequisites: Debian VM with SSH access & GIT SSH keys installed
+# Change the folders to the correct path (change username)
+# Run with: ansible-playbook lab_1.2_solution.yml -K 
+- name: setup an http-https Web App on howest server
+  hosts: killerb@192.168.10.47
+  become: true
+  vars_files:
+    - vars/default.yml
+
+#  vars_prompt:
+ #   - name: "githubuser"
+  #    prompt: "Enter your github username"
+   #   private: no
+    #- name: "githubpassword"
+     # prompt: "Enter your github password"
+      #private: yes
+
+  tasks:
+    - include_tasks: tasks/install.yml
+    - include_tasks: tasks/config.yml
+  
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache
+      service:
+        name: apache2
+        state: restarted

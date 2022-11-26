@@ -4,10 +4,23 @@
 if (isset($_POST['register']))
     {
       //assign data received from post to variables
-      $email = $_POST['email'];
-      $username = $_POST['user'];
-      $password1 = $_POST['pass'];
-      $password_conf = $_POST['conf_pass'];
+      $email =  htmlentities($_POST['email']);
+      $username = htmlentities($_POST['user']);
+      $password1 = htmlentities($_POST['pass']);
+      $password_conf = htmlentities($_POST['conf_pass']);
+
+      //$date = date('Y-m-d H:i:s');
+// If you're looking to store the current time just use MYSQL's functions.
+
+// mysql_query("INSERT INTO `table` (`dateposted`) VALUES (now())");
+// If you need to use PHP to do it, the format it Y-m-d H:i:s so try
+
+// $date = date('Y-m-d H:i:s');
+// mysql_query("INSERT INTO `table` (`dateposted`) VALUES ('$date')");
+
+
+
+
 
       // form validation: ensure that the form is correctly filled
       if ($password1 !== $password_conf) {
@@ -16,10 +29,11 @@ if (isset($_POST['register']))
       }
       else{
         //Encrypt Created Password
-        $password=md5($password1);
+        $password=md5($password1); 
+        
 
         //Ship data to Database
-        $query= "INSERT INTO Users (username , email, user_type,  password, image, status) VALUES('$username','$email','user','$password','','0')";
+        $query= "INSERT INTO Users (username , email, user_type,  password, image, status,date_created) VALUES('$username','$email','user','$password','','0',now())";
         $result=mysqli_query($con,$query);
 
 

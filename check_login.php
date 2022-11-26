@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php include('dbcon.php'); 
 
+
 //check if the login button is clicked 
 	if (isset($_POST['login']))
 		{

@@ -1,0 +1,44 @@
+---
+
+#configure Git, apache, HTTPS
+
+- name: Create directory ~/project
+  file:
+    path: /home/killerb/project
+    mode: 0755
+    owner: killerb
+    group: killerb
+    state: directory
+
+- name: Clone GIT repo into code directory
+  git:
+    repo: "{{git_repo}}"
+    key_file: "{{key_file}}"
+    dest: "{{source_folder}}"
+    clone: yes
+    update: yes
+    accept_hostkey: yes
+
+- name: Create symlink in /var/www to new dir
+  file:
+    src: "{{source_folder}}"
+    dest: "{{dest_folder}}"
+    state: link
+
+
+- name: Set up HTTP virtualHost via copy of the default.conf
+  template:
+    src: "files/http.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+
+
+
+- name: Enable new site
+  shell: /usr/sbin/a2ensite {{ http_conf }}
+  notify: Reload Apache
+
+- name: Disable default Apache site
+  shell: /usr/sbin/a2dissite 000-default.conf
+  notify: Reload Apache
+
+
