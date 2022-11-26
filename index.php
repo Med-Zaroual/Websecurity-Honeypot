@@ -3,6 +3,7 @@
  include('dbcon.php');
  ?>
 
+<<<<<<< HEAD
  <?php  include('header.php') ?>
 
 <div class="form-wrapper">

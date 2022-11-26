@@ -160,8 +160,9 @@ function enableAction(){
 		$id=$_GET['user'];
 		enable_user($id);
 		header('location: index.php?action=admin');
-		// adminAction();
 	}
+	views('vError_418.php');
+
 };
 
 function disableAction(){
@@ -172,11 +173,10 @@ function disableAction(){
 			disable_user($id);
 			header('location:index.php?action=admin');
 		}else{
-			// header('location:index.php?action')
-			// header('lo')
 			views('vError_403.php');
 		}
 	}
+	views('vError_418.php');
 };
 
 function logoutAction(){
@@ -192,7 +192,7 @@ function logoutAction(){
 
 
 function chech_registration(){ // called inside
-	$con = getCn();
+	$con = getCn();	
 if (isset($_POST['register']))
 {
 	//assign data received from post to variables
