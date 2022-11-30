@@ -7,7 +7,7 @@ if(isset($_GET['user'])){
 	$user=getUserById($id);
 	if($user['user_type'] !== "admin"){
 		disable_user($id);
-		header('location:admin.php');
+		header('location:boss.php');
 	}
 	else{
 		header('location:error_403.php');

@@ -1,3 +1,6 @@
+<?php include('session.php') ?>
+<?php include ('dbcon.php');?>
+
 <!-- include the svg assets later used in the project -->
 <link rel="stylesheet" type="text/css" href="Assets/css/error.css">
 

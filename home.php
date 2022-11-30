@@ -9,6 +9,13 @@ $row=getUserById($session_id);
 ?>
 
 <?php include('header.php')?>
+<div class="wrapper">
+    <div class="header">
+        <a href="challenges.php"> <p>Challenges</p></a>
+
+        <div class="go_home"><a href="home.php">Profile</a></div>
+    </div>
+</div>
 
 <div class="form-wrapper-home"> 
     <center><h3>Welcome:<i> <?php echo $row['username']; ?></i> </h3></center>
@@ -29,7 +36,6 @@ $row=getUserById($session_id);
                     echo 'Please Select Image File';
                 }
                 ?>
-
                 
             </div>
             
@@ -37,7 +43,7 @@ $row=getUserById($session_id);
 
             <br><br>
            
-            <form method="post" id="upload_img" action="upload1.php" enctype="multipart/form-data">
+            <form method="post" id="upload_img" action="upload2.php" enctype="multipart/form-data">
                 <input type="file" name="avatar" id="myAvatar"/>
                 <input type="submit" name="upload" value="Upload" class="btn1">
             </form>
@@ -88,17 +94,22 @@ $row=getUserById($session_id);
 </body>
 </html>
 
+
 <script type="text/javascript">
 $(document).ready(function(){   
-    $('#upload_img').on('submit', function(event){
+    $('#upload_img').submit(function (event){
         event.preventDefault();
+        var form=$(this);
+        var actionUrl= form.attr('action');
         $.ajax({
-            url:"upload.php",
+            url: actionUrl,
             method:"POST",
-            data:new FormData(this),
-            contentType:false,
-            cache:false,
-            processData:false,
+            data: form.serialize(),
+            //data:new FormData(this),
+            //contentType:false,
+            //cache:false,
+            //processData:false,
+            dataType: "json",
             success:function(data){
                 $('#preview').html(data);
             }
