@@ -7,7 +7,7 @@ $email = "";
 $errors = array();
 
 //connect to database with Procedurale Style 
-$con = mysqli_connect("localhost","med","123456789","login");
+$con = mysqli_connect("localhost","root","12341234","login");
 
 //connect to database with Object Oriented Style
 
@@ -39,11 +39,6 @@ function Nb_log_in(){
 }
 
 
-function setImgDownload($imagePath) {           
-    $image = imagecreatefromjpeg($imagePath);
-    header('Content-Type: image/jpeg');
-    imagejpeg($image);
-}
 
 //get list of all users
 //https://www.w3schools.com/php/func_mysqli_fetch_all.asp#:~:text=Definition%20and%20Usage,only%20with%20MySQL%20Native%20Driver.
@@ -89,7 +84,7 @@ foreach($sessionNames as $sessionName) {
 function getStatus($id){
   global $con;
   $user=getUserById($id);
-  if($user['status']=='1'){
+  if($user['status']=='1' && $user['user_type']!=="blocked"){
     return "Connected";
   }
   return "Out";
@@ -103,13 +98,7 @@ function getAllImages(){
   return $images=mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
 
-function getImageByUserId($id){
-  global $con;
-  $image=[];
-  $request=mysqli_query($con,"select * from Images where user_id='$id'");
-  $image = mysqli_fetch_assoc($request);
-  return $image;
-}
+
 
 function add_image($id){
   global $con;
@@ -127,10 +116,12 @@ function add_image($id){
       $msg = "Failed to upload image";
     }
   }
-    // $request=mysqli_query($con,"update Users set image='$path' where user_id='$id'");
+
 }
 
 
+//https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
+//check the status of each users, based on it session
 // Once connected : change the status in DB
 function changeStatus($id){
   global $con;
@@ -165,7 +156,7 @@ function display_error() {
 
 function isAdmin(){
   if ($_SESSION['user_type'] === 'admin'){
-    header('location:admin.php');
+    header('location:boss.php');
   }
   else{
     header('location:home.php');
@@ -176,7 +167,9 @@ function isAdmin(){
 function disable_user($id){
   global $con;
   $request=mysqli_query($con,"update Users set user_type=\"blocked\" where user_id='$id'");
+  $request2=mysqli_query($con,"update Users set status=\"0\" where user_id='$id'");
 }
+
 function enable_user($id){
   global $con;
   $request=mysqli_query($con,"update Users set user_type=\"user\" where user_id='$id'");
@@ -184,18 +177,55 @@ function enable_user($id){
 //=====================  =====================  =====================
  
 
- //https://stackoverflow.com/questions/2440506/how-to-check-if-an-array-value-exists
-//check the status of each users, based on it session
-//in admin.php => getStatus("user_id",$user["user_id"])
-function getStatus2($key,$value){ // => didnt work properly: DROPPED
-  global $con;
-  $allSessions=getAllSessions();
-  foreach ($allSessions as $s){
-    if(isset($s[$key]) && $s[$key] === $value){
-        return "In";
+//https://stackoverflow.com/questions/10752862/password-strength-check-in-php
+//check Password
+function checkPassword($pwd) {
+    $errors='';
+
+    if (strlen($pwd) < 8) {
+        $errors = "Password too short!";
     }
-        return "out";
-    }}
+
+    if (!preg_match("#[0-9]+#", $pwd)) {
+        $errors = "Password must include at least one number!";
+    }
+
+    if (!preg_match("#[a-zA-Z]+#", $pwd)) {
+        $errors = "Password must include at least one letter!";
+    }     
+
+    return $errors;
+}
+
+//check Emails syntax " a@b.com "
+function checkEmail($email)
+  {
+    if (filter_var($email, FILTER_VALIDATE_EMAIL))
+      return true;
+    else
+      return false;   
+  }
+
+
+function getResponse($id){
+  global $con;
+  $challenge=[];
+  $request=mysqli_query($con,"select * from Challenges where chall_id='$id'");
+  $challenge = mysqli_fetch_assoc($request);
+  return $challenge;
+  // $user = mysqli_fetch_assoc($request);
+  // return $user;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
