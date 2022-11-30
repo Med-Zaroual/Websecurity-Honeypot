@@ -1,7 +1,7 @@
 <?php
 // this is mvc index 
 // there is a need to 
-require("Config/config2.php");
+require("Config/config.php");
 require ("Models/model.php"); //model
 require("Views/response.php"); //view
 require ("Controlers/Controler.php"); //controler
